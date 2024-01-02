@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --bg: #081b29;
+    --secon_bg: #112e42;
+    --main_color: #00abf0;
+    --text_color: #ededed;
+    --pink: #b721d1;
+}
+
+
+html{
+    cursor: url("/src/assets/cursor.png"), default !important; 
+}
+
+body {
+    background: linear-gradient(360deg, var(--pink), rgba(0, 0, 0, 0.748) 40%), url('/src/assets/bg.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(6px);
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.8px);
+    -webkit-backdrop-filter: blur(4.8px);
+    border: 1px solid rgba(255, 255, 255, 0.19);
+}
+
+.active  {
+background-color: var(--secon_bg); 
+color: var(--main_color);
+}
+
+.active > span { 
+color: var(--main_color);
+}
+
+
+/* ----------------custom-scroll-bar------------------ */
+::-webkit-scrollbar {
+    width: 10px
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--bg)
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(-450deg, var(--pink), #014661);
+    border-radius: 25px
+}
+
+/* ----------------custom-scroll-bar------------------ */
