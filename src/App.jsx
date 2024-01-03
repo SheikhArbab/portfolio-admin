@@ -1,25 +1,19 @@
 import React from 'react';
 import LoadingBar from 'react-top-loading-bar';
-import axios from 'axios'
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'; 
-import {RootLayout,PrivateLayout,LogOutLayout} from './layout/index'
-import {Dashboard,NotFound,Profile,Login,Register} from './pages/index'
-import { jwtDecode } from "jwt-decode"; 
+import { RootLayout, PrivateLayout, AdminLayout, LogOutLayout } from './layout/index'
+import { Dashboard, NotFound, Profile, Login, Register, Projects, Users, About, Skill, Testimonial, Contact } from './pages/index'
+import { jwtDecode } from "jwt-decode";
+import { currentUser } from './redux/features/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
 const App = () => {
-  
-  axios.defaults.baseURL = 'http://localhost:4000/'
-  axios.defaults.withCredentials = true
-
   const [progress, setProgress] = React.useState(0);
-
- 
-   
 
   const router = createBrowserRouter(createRoutesFromElements(
 
     //RootLayout
-    <Route path='/' element={<RootLayout />}>
+    <Route path='/' element={<RootLayout setProgress={setProgress} />}>
       <Route path="*" element={<NotFound setProgress={setProgress} />} />
 
 
@@ -35,46 +29,57 @@ const App = () => {
       {/* PrivateRoutes  */}
       <Route path='/' element={<PrivateLayout />}>
 
-        <Route path='/dashboard/' element={<Dashboard setProgress={setProgress} />} />
-
-
-        {/* Authorized */}
-        {/* <Route path='/dashboard/' element={<Authorized role={'admin'} />}>  
-        </Route> */}
-        {/* Authorized  */}
-
-
+        <Route path='/projects' element={<Projects setProgress={setProgress} />} />
         <Route path="*" element={<NotFound setProgress={setProgress} />} />
-        <Route path='/Profile' element={<Profile setProgress={setProgress} />} /> 
+        <Route path='/Profile' element={<Profile setProgress={setProgress} />} />
+        <Route path='/about' element={<About setProgress={setProgress} />} />
+        <Route path='/skills' element={<Skill setProgress={setProgress} />} />
+        <Route path='/testimonial' element={<Testimonial setProgress={setProgress} />} />
+        <Route path='/contact' element={<Contact setProgress={setProgress} />} />
+
+        {/* Admin */}
+        <Route path='/' element={<AdminLayout role={'admin'} />}>
+          <Route path='/dashboard/' element={<Dashboard setProgress={setProgress} />} />
+          <Route path='/users' element={<Users setProgress={setProgress} />} />
+        </Route>
+        {/* Admin  */}
 
       </Route>
       {/* PrivateRoutes  */}
 
     </Route>
     //  RootLayout
-  )); 
- 
+  ));
+
+
+  const { token } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-
     let intervalId;
 
-    if (localStorage.token) {
+    if (token) {
       intervalId = setInterval(() => {
-        const { exp } = jwtDecode(localStorage.token);
+        const { exp } = jwtDecode(token);
         if (exp < Date.now() / 1000) {
           alert("Your session has expired. Please log in again to continue using the app.");
-          localStorage.setItem('user', null);
-          localStorage.setItem('token', null); 
+          dispatch(currentUser({ user: null, token: null }));
         }
-      }, 3000) }  return () => clearInterval(intervalId) }, [localStorage.token]);
+      }, 3000)
+    } return () => clearInterval(intervalId)
+  }, [token, dispatch]);
 
- 
+
 
   return (
     <>
-       <LoadingBar color='#b721d1' shadow={true}  progress={progress} onLoaderFinished={() => setProgress(0)} />
-      <RouterProvider router={router} />
+      <LoadingBar
+        color='var(--pink)'
+        shadow={true}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)} />
+      <RouterProvider
+        router={router} />
     </>
   );
 };

@@ -1,23 +1,20 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom';
 import { Navbar, Footer, Sidebar } from '../components/index';
+import { useSelector } from 'react-redux';
 
 const PrivateLayout = () => {
-
+  const currentUser = useSelector((state) => state.auth.token);
   return (
-    localStorage.token ?
-
-      <>
-
-        <Navbar />
-        <div className='flex relative'>
-          <Sidebar />
-          <Outlet />
-        </div>
-        <Footer />
-      </>
-
-      : <Navigate to="/login" replace />
+    currentUser ?
+    <>
+      <Navbar />
+      <div className='flex relative'>
+        <Sidebar />
+        <Outlet />
+      </div>
+      <Footer />
+    </> : <Navigate to={'/login'} />
   )
 }
 

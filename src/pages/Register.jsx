@@ -1,5 +1,4 @@
-import React from 'react'
-import axios from 'axios'
+import React from 'react' 
 import * as Yup from 'yup'; 
 import { useFormik } from "formik";
 import { Link } from 'react-router-dom'
@@ -37,12 +36,7 @@ const Register = ({ setProgress }) => {
       password: Yup.string().required('Password is required'),
     }),
     onSubmit: async (formValues) => {
-      try {
-        const res = await axios.post('auth/signup', formValues);
-        console.log(res);
-      } catch (error) {
-        console.error("Login failed:", error);
-      }
+ 
     },
   });
 

@@ -1,11 +1,12 @@
 import React from 'react';
-import axios from 'axios';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { useSelector } from 'react-redux';
+import { FaCamera } from "react-icons/fa";
 
 const Profile = ({ setProgress }) => {
-  
-  const user = JSON.parse(localStorage.user);
+
+  const user = useSelector(state => state.auth.user)
 
   const [loading, setLoading] = React.useState(false);
   const [updateError, setUpdateError] = React.useState(null);
@@ -24,7 +25,7 @@ const Profile = ({ setProgress }) => {
     setDocumentTitleAndProgress();
   }, []);
 
- 
+
   const {
     handleChange,
     handleSubmit,
@@ -47,20 +48,9 @@ const Profile = ({ setProgress }) => {
       avatar: Yup.string(),
     }),
     onSubmit: async (formValues) => {
-      try {
-        setLoading(true);
-        const { data } = await axios.put(`auth/update/${user._id}`, formValues);
 
-        if (data && data.updatedUser) {
-          localStorage.setItem('user', JSON.stringify(data.updatedUser));
-          console.log('Profile updated successfully!');
-        }
-      } catch (error) {
-        console.error('Update failed:', error);
-        setUpdateError('Failed to update profile. Please try again.');
-      } finally {
-        setLoading(false);
-      }
+ 
+ 
     },
   });
 
@@ -82,8 +72,13 @@ const Profile = ({ setProgress }) => {
       <div className='w-full   rounded-lg shadow  border md:mt-0 md:max-w-[50%] xl:p-0  '>
         <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
           <div className='w-full flex items-center justify-center flex-col'>
-            <figure className='overflow-hidden md:w-64 rounded-full md:h-64 h-32 w-32  border-4 border-primaryPink' onClick={() => fileRef.current.click()}>
-              <img   src={values.avatar || user.avatar} className='w-full h-full object-cover ' alt='avatar' />
+            <figure
+              className='group overflow-hidden md:w-64 rounded-full md:h-64 h-32 w-32 border-4 border-primaryPink relative before:w-full before:h-full hover:before:bg-black/80 before:absolute before:top-0 before:left-0 before:block  before:duration-300'
+              onClick={() => fileRef.current.click()}>
+              <img src={values.avatar || user.avatar} className='w-full h-full object-cover ' alt='avatar' />
+                  <span className='absolute z-30 top-[50%] left-[50%] -translate-x-[30%] opacity-0 group-hover:opacity-100 duration-300 -translate-y-[50%]'>
+                  <FaCamera color='white' size={'60%'}/>  
+                  </span>
             </figure>
             <h1 className='text-gray-50 capitalize font-bold md:text-6xl'>{user.fullName}</h1>
           </div>

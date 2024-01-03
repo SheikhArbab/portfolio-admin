@@ -19,25 +19,25 @@ const Footer = () => {
             <div className="mt-6 lg:mb-0 mb-6 flex items-center">
               <button
                 onClick={() => { window.open("https://arbab-dev.netlify.app/", "_blank") }}
-                className="bg-white hover:bg-primaryBg duration-300 text-primaryBg hover:text-primaryPink flex items-center justify-center shadow-lg font-normal h-9 w-9   rounded-full outline-none focus:outline-none mr-2"
+                className="bg-white hover:bg-primaryBg duration-300 text-primaryBg hover:text-secMain flex items-center justify-center shadow-lg font-normal h-9 w-9   rounded-full outline-none focus:outline-none mr-2"
                 type="button"
               ><MdOutlineWeb />
               </button>
               <button
                 onClick={() => { window.open("https://github.com/SheikhArbab?tab=repositories", "_blank") }}
-                className="bg-white hover:bg-primaryBg duration-300 text-primaryBg hover:text-primaryPink flex items-center justify-center shadow-lg font-normal h-9 w-9   rounded-full outline-none focus:outline-none mr-2"
+                className="bg-white hover:bg-primaryBg duration-300 text-primaryBg hover:text-secMain flex items-center justify-center shadow-lg font-normal h-9 w-9   rounded-full outline-none focus:outline-none mr-2"
                 type="button"
               ><FaGithubAlt  />
               </button>
               <button
                 onClick={() => { window.open("https://www.linkedin.com/in/arbab-zafar-web-developer/", "_blank") }}
-                className="bg-white hover:bg-primaryBg duration-300 text-primaryBg hover:text-primaryPink flex items-center justify-center shadow-lg font-normal h-9 w-9   rounded-full outline-none focus:outline-none mr-2"
+                className="bg-white hover:bg-primaryBg duration-300 text-primaryBg hover:text-secMain flex items-center justify-center shadow-lg font-normal h-9 w-9   rounded-full outline-none focus:outline-none mr-2"
                 type="button"
               ><FaLinkedinIn />
               </button>
               <button
                 onClick={() => { window.open("https://wa.me/+923125305532", "_blank") }}
-                className="bg-white hover:bg-primaryBg duration-300 text-primaryBg hover:text-primaryPink flex items-center justify-center shadow-lg font-normal h-9 w-9   rounded-full outline-none focus:outline-none mr-2"
+                className="bg-white hover:bg-primaryBg duration-300 text-primaryBg hover:text-secMain flex items-center justify-center shadow-lg font-normal h-9 w-9   rounded-full outline-none focus:outline-none mr-2"
                 type="button"
               ><IoLogoWhatsapp />
               </button>
@@ -52,16 +52,16 @@ const Footer = () => {
                 </span>
                 <ul className="list-unstyled">
                   <li>
-                    <buton
-                      className="text-gray-400 hover:text-primaryPink  font-semibold block pb-2 text-sm"
+                    <button
+                      className="text-gray-400 hover:text-secMain  font-semibold block pb-2 text-sm"
                       href="https://www.creative-tim.com/presentation?ref=njs-profile"
                     >
                       About Us
-                    </buton>
+                    </button>
                   </li>
                   <li>
                     <button
-                      className="text-gray-400 hover:text-primaryPink font-semibold block pb-2 text-sm"
+                      className="text-gray-400 hover:text-secMain font-semibold block pb-2 text-sm"
                       href="https://blog.creative-tim.com?ref=njs-profile"
                     >
                       Blog
@@ -69,7 +69,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <button
-                      className="text-gray-400 hover:text-primaryPink font-semibold block pb-2 text-sm"
+                      className="text-gray-400 hover:text-secMain font-semibold block pb-2 text-sm"
                       href="https://www.github.com/creativetimofficial?ref=njs-profile"
                     >
                       Github
@@ -77,7 +77,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <b
-                      className="text-gray-400 hover:text-primaryPink font-semibold block pb-2 text-sm"
+                      className="text-gray-400 hover:text-secMain font-semibold block pb-2 text-sm"
                       href="https://www.creative-tim.com/bootstrap-themes/free?ref=njs-profile"
                     >
                       Free Products
@@ -92,7 +92,7 @@ const Footer = () => {
                 <ul className="list-unstyled">
                   <li>
                     <a
-                      className="text-gray-400 hover:text-primaryPink font-semibold block pb-2 text-sm"
+                      className="text-gray-400 hover:text-secMain font-semibold block pb-2 text-sm"
                       href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile"
                     >
                       MIT License
@@ -100,7 +100,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      className="text-gray-400 hover:text-primaryPink font-semibold block pb-2 text-sm"
+                      className="text-gray-400 hover:text-secMain font-semibold block pb-2 text-sm"
                       href="https://creative-tim.com/terms?ref=njs-profile"
                     >
                       Terms &amp; Conditions
@@ -108,7 +108,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      className="text-gray-400 hover:text-primaryPink font-semibold block pb-2 text-sm"
+                      className="text-gray-400 hover:text-secMain font-semibold block pb-2 text-sm"
                       href="https://creative-tim.com/privacy?ref=njs-profile"
                     >
                       Privacy Policy
@@ -116,7 +116,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      className="text-gray-400 hover:text-primaryPink font-semibold block pb-2 text-sm"
+                      className="text-gray-400 hover:text-secMain font-semibold block pb-2 text-sm"
                       href="https://creative-tim.com/contact-us?ref=njs-profile"
                     >
                       Contact Us
@@ -130,7 +130,7 @@ const Footer = () => {
         <hr className="my-6 border-blueGray-300" />
         <div className="flex flex-wrap items-center md:justify-between justify-center">
           <div className="w-full md:w-4/12 px-4 mx-auto text-center">
-            <div className="text-sm text-gray-200 font-semibold py-1">
+            <div className="text-sm text-gray-200 font-semibold py-1 group">
               Copyright © <span id="get-current-year">2024</span>
               <a
                 href="https://www.creative-tim.com/product/notus-js"
@@ -143,7 +143,7 @@ const Footer = () => {
               </a>
               <a
                 href="https://www.creative-tim.com?ref=njs-profile"
-                className="text-gray-200  hover:text-gray-800 duration-300"
+                className="text-gray-200  group-hover:text-secMain duration-300"
               >
                 Arbab Zafar
               </a>
