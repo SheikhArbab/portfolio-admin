@@ -1,52 +1,53 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const usersApi = createApi({
-  reducerPath: 'usersApi',
-  tagTypes: ['users'],
+  reducerPath: "usersApi",
+  tagTypes: ["users"],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8000/SuperTech/', 
-    credentials: 'include',
-    mode: 'cors',
+    baseUrl: "http://localhost:4000/",
+    credentials: "include",
+    mode: "cors",
     prepareHeaders: (headers) => {
-      headers.set('Content-Type', 'application/json');
+      headers.set("Content-Type", "application/json");
       return headers;
     },
   }),
   endpoints: (builder) => ({
     getAllUsers: builder.query({
-      query: ({ currentPage, pageSize, searchTerm }) => `users?page=${currentPage}&limit=${pageSize}&search=${searchTerm}`,
-      providesTags: ['users'],
+      query: ({ currentPage, pageSize, searchTerm }) =>
+        `users?page=${currentPage}&limit=${pageSize}&search=${searchTerm}`,
+      providesTags: ["users"],
     }),
     getUserById: builder.query({
       query: (id) => `user/${id}`,
-      providesTags: ['users'],
+      providesTags: ["users"],
     }),
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `delete-user/${id}`,
-        method: 'DELETE'
+        method: "DELETE",
       }),
-      invalidatesTags: ['users'],
+      invalidatesTags: ["users"],
     }),
     editUser: builder.mutation({
       query: ({ id, ...user }) => ({
         url: `edit-user/${id}`,
-        method: 'PUT',
+        method: "PUT",
         body: { id, ...user },
       }),
-      invalidatesTags: ['users'],
+      invalidatesTags: ["users"],
     }),
     addCareer: builder.mutation({
       query: (body) => ({
         url: `/career`,
-        method: 'POST',
+        method: "POST",
         body: body,
       }),
     }),
     addUser: builder.mutation({
       query: (body) => ({
         url: `/new-user`,
-        method: 'POST',
+        method: "POST",
         body: body,
       }),
     }),
@@ -59,5 +60,5 @@ export const {
   useDeleteUserMutation,
   useEditUserMutation,
   useAddUserMutation,
-  useAddCareerMutation
+  useAddCareerMutation,
 } = usersApi;
